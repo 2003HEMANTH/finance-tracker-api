@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.database import engine, Base
 from app.models import user, transaction
-from app.routes import auth, transactions
+from app.routes import auth, transactions, analytics
 
 Base.metadata.create_all(bind=engine)
 
@@ -13,6 +13,7 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(transactions.router)
+app.include_router(analytics.router)
 
 
 @app.get("/")
